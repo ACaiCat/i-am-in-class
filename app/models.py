@@ -83,6 +83,7 @@ class InfoOption(BaseModel):
     imageUrl: Optional[str] = None
     score: Optional[float] = None
 
+
 class QuestionOption(BaseModel):
     title: Optional[str] = None
 

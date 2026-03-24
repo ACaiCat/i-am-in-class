@@ -1,4 +1,3 @@
-
 from gql import Client
 from gql.transport.requests import RequestsHTTPTransport
 

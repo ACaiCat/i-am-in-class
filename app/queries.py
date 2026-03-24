@@ -29,7 +29,6 @@ mutation createBaomingByInput($input: createBaomingInput!) {
 }
 """)
 
-
 GET_TONGJI_QUERY = gql("""
 query getTongji($_id: String) {
   tongji(_id: $_id) {
@@ -465,4 +464,3 @@ query getTongji($_id: String) {
   }
 }
 """)
-
