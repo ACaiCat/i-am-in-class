@@ -65,7 +65,7 @@ def main():
             diff: timedelta = datetime.combine(datetime.today(), end_time) - datetime.now()
 
             is_today = weekday == -1 or weekday == datetime.today().weekday()
-            is_time = timedelta(0) < diff < timedelta(minutes=10)
+            is_time = timedelta(0) < diff < timedelta(minutes=20)
 
             if is_time and is_today:
                 submit_baoming(client, result.tongji)
