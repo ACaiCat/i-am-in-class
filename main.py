@@ -28,6 +28,10 @@ def submit_baoming(client: gql.Client, tongji: Tongji):
         ))
         print(f"【{tongji.title}】打卡成功!")
     except TransportQueryError as e:
+        if not e.errors or len(e.errors) == 0:
+            print(f"【{tongji.title}】打卡失败! {str(e)}")
+            return
+
         if e.errors[0].startswith("重复请求"):
             print(f"【{tongji.title}】已存在打卡记录!")
         else:
@@ -59,12 +63,12 @@ def main():
 
             weekday = -1
             if len(time_parts) > 1:
-                weekday = time_parts[1]
+                weekday = int(time_parts[1])
 
             end_time = datetime.strptime(time_str, "%H:%M").time()
             diff: timedelta = datetime.combine(datetime.today(), end_time) - datetime.now()
 
-            is_today = weekday == -1 or weekday == datetime.today().weekday()
+            is_today = weekday == -1 or weekday == datetime.today().isoweekday()
             is_time = timedelta(0) < diff < timedelta(minutes=20)
 
             if is_time and is_today:
